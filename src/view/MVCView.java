@@ -31,5 +31,6 @@ public class MVCView
 		public void printModelo(MVCModelo modelo)
 		{
 			// TODO implementar
+			
 		}
 }

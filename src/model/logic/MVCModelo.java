@@ -11,7 +11,7 @@ public class MVCModelo {
 	/**
 	 * Atributos del modelo del mundo
 	 */
-	private IArregloDinamico datos;
+	private IArregloDinamico <Integer> datos;
 	
 	/**
 	 * Constructor del modelo del mundo con capacidad predefinida
@@ -43,7 +43,7 @@ public class MVCModelo {
 	 * Requerimiento de agregar dato
 	 * @param dato
 	 */
-	public void agregar(String dato)
+	public void agregar(Integer dato)
 	{	
 		datos.agregar(dato);
 	}
@@ -53,7 +53,7 @@ public class MVCModelo {
 	 * @param dato Dato a buscar
 	 * @return dato encontrado
 	 */
-	public String buscar(String dato)
+	public String buscar(Integer dato)
 	{
 		return datos.buscar(dato);
 	}
@@ -63,7 +63,7 @@ public class MVCModelo {
 	 * @param dato Dato a eliminar
 	 * @return dato eliminado
 	 */
-	public String eliminar(String dato)
+	public String eliminar(Integer dato)
 	{
 		return datos.eliminar(dato);
 	}
