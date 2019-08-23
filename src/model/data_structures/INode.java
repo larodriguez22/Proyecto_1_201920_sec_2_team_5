@@ -1,10 +1,10 @@
-package model.data_structures;
+	package model.data_structures;
 
 
 
 public interface INode<T> {
 
-	/**
+	 /**
      * Retorna el nodo anterior
      * @return El nodo anterior
      */
@@ -21,10 +21,5 @@ public interface INode<T> {
      * @return El elemento del nodo
      */
     public T darElemento( );
-    
-    /**
-     * Retorna el elemento eliminado
-     * @return elemento eliminado
-     */
-    public Node<T> eliminar();
+
 }

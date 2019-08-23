@@ -1,5 +1,7 @@
 package model.data_structures;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * 2019-01-23
@@ -8,76 +10,166 @@ package model.data_structures;
  * @author Fernando De la Rosa
  *
  */
-public class ArregloDinamico<T extends Comparable<T>> implements IArregloDinamico<T> 
+public class ArregloDinamico<T> implements IArregloDinamico<T>
 {
 	/**
-     * Cabeza de la lista encadenada
-     */
-    private Node<T> primero;
+	 * Cabeza de la lista encadenada
+	 */
+	private Node<T> primero;
 
-    /**
-     * �ltimo elemento de la lista encadenada
-     */
-    private Node<T> ultimo;
+	/**
+	 * �ltimo elemento de la lista encadenada
+	 */
+	private Node<T> ultimo;
 	/**
 	 * Numero de elementos presentes en el arreglo (de forma compacta desde la posicion 0)
 	 */
-	private int tamano;
+	private int num;
 
 	/**
 	 * Construir un arreglo con la capacidad maxima inicial.
 	 * @param max Capacidad maxima inicial
 	 */
-	public ArregloDinamico( int max )
+	public ArregloDinamico( )
 	{
 		primero = null;
 		ultimo = null;
-		tamano = 0;
 	}
 
 	public void agregar( T o )
 	{
 		Node<T> act= new Node<T>(o);
 		if( primero == null )
-        {
-            primero = act;
-            ultimo = act;
-        }
-        else
-        {
-            ultimo.agregar(act);;
-            ultimo = act;
-        }
-        tamano++;
+		{
+			primero = act;
+			ultimo = act;
+		}
+		else
+		{
+			primero.insertarDespues(act);
+			ultimo=act;
+		}
+		num++;
 	}
-
-	public int darTamano() 
+	
+	public int size() 
 	{
-		return tamano;
+		return num;
 	}
-
-	public T buscar(T dato) {
+	
 		
-		for( Node<T> p = primero; p != null; p = p.darSiguiente( ) )
-        {
-            if( p.darElemento( ).compareTo(dato)==0 )
-            {
-                return p.darElemento( );
-            }
-        }
-        return null;
+	 public int darTamano()
+	 {
+		 return num;
+	 }
+
+	private class ArregloDinamicoIterator implements Iterator<T>{
+
+		Node<T> a =null;
+		
+		@Override
+		public boolean hasNext() {
+			// TODO Auto-generated method stub
+			boolean bool;
+			if(a==null)
+			{
+				a=primero;
+			}
+			else 
+			{
+				a=a.darSiguiente();
+			}
+			if(a==null)
+			{
+				bool=false;
+			}
+			else
+			{
+				bool=true;
+			}
+			return bool;
+		}
+		
+		@Override
+		public T next() {
+			// TODO Auto-generated method stub
+			// TODO Auto-generated method stub
+			if(a!=null)
+			{
+				return a.darObjeto();
+			}
+			else
+			{
+				throw new NoSuchElementException();
+			}
+
+		}
 	}
 
-	public Node<T> eliminar(Node<T> dato) throws NoExisteException 
+
+
+	@Override
+	public void remove(int pos) {
+		// TODO Auto-generated method stub
+		    
+		        T valor = null;
+		        if( pos == 0 )
+		        {
+		            if( primero.equals( ultimo ) )
+		            {
+		                ultimo = null;
+		            }
+		            valor = primero.darElemento( );
+		            primero = primero.desconectarPrimero( );
+		            num--;
+		        }
+		        else
+		        {
+
+		            Node<T> p = primero.darSiguiente( );
+		            for( int cont = 1; cont < pos; cont++ )
+		            {
+		                p = p.darSiguiente( );
+		            }
+
+		            if( p.equals( ultimo ) )
+		            {
+		                ultimo = p.darAnterior( );
+		            }
+		            valor = p.darElemento( );
+		            p.desconectarNodo( );
+		            num--;
+		        
+		    }
+	}
+
+	@Override
+	public T get(int pos) {
+	            Node<T> aux = primero;
+
+	            for( int cont = 0; cont < pos; cont++ )
+	            {
+	                aux = aux.darSiguiente( );
+	            }
+
+	            return aux.darElemento( );
+	        
+	}
+
+	@Override
+	public boolean isEmpty() 
 	{
-		// TODO implementar
-		// Recomendacion: Usar el criterio de comparacion natural (metodo compareTo()) definido en Strings.
-		if(  dato.eliminar()== null )
-        {
-            throw new NoExisteException( "El nodo especificado no pertenece a la lista" );
-        }
-		return dato.eliminar();
-        
+		primero = null;
+        ultimo = null;
+        num = 0;
+        return true;
 	}
-}
+	
+	@Override
+	public Iterator<T> iterator() 
+	{			
+		return new ArregloDinamicoIterator();
+	}
 
+
+	}
