@@ -33,7 +33,7 @@ public class Controller
 		modelo = new MVCModelo();
 	}
 
-	public void run() 
+	public void run()
 	{
 		Scanner lector = new Scanner(System.in);
 		boolean fin = false;
@@ -48,8 +48,15 @@ public class Controller
 			case 1:
 				view.printMessage("--------- \n Cargando Viajes ");
 				modelo = new MVCModelo();
+				try
+				{
 				modelo.crearLista(0);
 				modelo.crearLista(1);
+				}
+				catch(Exception e)
+				{
+					//
+				}
 				view.printMessage("Lista creada");
 				view.printMessage("Viajes mes 1: " + modelo.darViajesMes(1)+ "\n---------");
 				view.printMessage("Viajes mes 2: " + modelo.darViajesMes(2)+ "\n---------");

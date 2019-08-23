@@ -2,7 +2,8 @@ package model.data_structures;
 
 import java.util.Iterator;
 
-public interface IArregloDinamico <T>{
+public interface IArregloDinamico <T> extends  Iterable <T>
+{
 
 	/**
 	 * Agregar un dato de forma compacta (en la primera casilla disponible) 
