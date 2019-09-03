@@ -7,8 +7,8 @@ import java.util.List;
 
 import com.opencsv.CSVReader;
 
-import model.data_structures.ArregloDinamico;
-import model.data_structures.IArregloDinamico;
+import model.data_structures.DoubleLinkedList;
+import model.data_structures.IDoubleLinkedList;
 
 
 /**
@@ -19,7 +19,7 @@ public class MVCModelo {
 	/**
 	 * Atributos del modelo del mundo
 	 */
-	private ArrayList<ArregloDinamico<Viaje>> datos;
+	private ArrayList<DoubleLinkedList<Viaje>> datos;
 
 	private int tamano;
 	private Viaje viaje;
@@ -29,9 +29,9 @@ public class MVCModelo {
 	 */
 	public MVCModelo()
 	{
-		datos = new ArrayList< ArregloDinamico<Viaje>>();
-		datos.add(new ArregloDinamico<Viaje>());
-		datos.add(new ArregloDinamico<Viaje>());
+		datos = new ArrayList< DoubleLinkedList<Viaje>>();
+		datos.add(new DoubleLinkedList<Viaje>());
+		datos.add(new DoubleLinkedList<Viaje>());
 	}
 	/**
 	 * Servicio de consulta de numero de elementos presentes en el modelo 
@@ -120,10 +120,10 @@ public class MVCModelo {
 		datos.get(lista).remove(pos);
 	}
 	
-	public ArregloDinamico<Viaje> nuevosServicios(int mes, int zona)
+	public DoubleLinkedList<Viaje> nuevosServicios(int mes, int zona)
 	{
 		
-		ArregloDinamico<Viaje> pedidos= new ArregloDinamico<Viaje>();
+		DoubleLinkedList<Viaje> pedidos= new DoubleLinkedList<Viaje>();
 		if(mes<=3)
 		{
 			for(Viaje i: datos.get(0))

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 
 
-public class Node <T> implements Serializable, INode<T>{
+public class Node <T> implements Serializable{
 	// -----------------------------------------------------------------
 	// Atributos
 	// -----------------------------------------------------------------

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import model.data_structures.ArregloDinamico;
+import model.data_structures.DoubleLinkedList;
 import model.logic.MVCModelo;
 import model.logic.Viaje;
 import view.MVCView;
@@ -71,7 +71,7 @@ public class Controller
 				int zona = lector.nextInt();
 				System.out.println("--------- \n Seleccione el mes: ");
 				int mes= lector.nextInt()-1;
-				ArregloDinamico<Viaje> viajes = modelo.nuevosServicios(mes, zona);
+				DoubleLinkedList<Viaje> viajes = modelo.nuevosServicios(mes, zona);
 				for(Viaje i:viajes)
 				{
 					view.printMessage("Zona Origen:"+i.getSourceid()+"; Zona destino:"+ i.getDstid() +"; tiempo promedio:" + i.getMean_travel_time() +"; Desviación estandar:" + i.getGeometric_standard_deviation_travel_time());
@@ -109,7 +109,7 @@ public class Controller
 				int zona1 = lector.nextInt();
 				System.out.println("--------- \n Seleccione el mes: ");
 				int mes3= lector.nextInt();
-				ArregloDinamico<Viaje> viajes2 = modelo.nuevosServicios(mes3, zona1);
+				DoubleLinkedList<Viaje> viajes2 = modelo.nuevosServicios(mes3, zona1);
 				int cont0=0;
 				int trimestre2;
 				if(mes3<=3)
