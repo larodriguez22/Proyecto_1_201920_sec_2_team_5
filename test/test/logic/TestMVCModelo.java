@@ -22,36 +22,9 @@ public class TestMVCModelo {
 			Viaje v2=new Viaje("7", "6", "5", "4", "3", "2", "1");
 			Viaje v3=new Viaje("8", "9", "10", "11", "12", "13", "14");
 			modelo.agregar(v1, 1);
+			modelo.agregar(v2, 0);
+			modelo.agregar(v3, 1);
 	}
 
-	@Test
-	public void testMVCModelo() {
-		assertTrue(modelo!=null);
-		assertEquals(0, modelo.darTamano());  // Modelo con 0 elementos presentes.
-	}
-
-	@Test
-	public void testDarTamano() {
-		assertEquals(0, modelo.darTamano());  // Modelo con 0 elementos presentes.
-	}
-
-	@Test
-	public void testAgregar() {
-		// TODO Completar la prueba
-		
-	}
-
-	@Test
-	public void testBuscar() {
-		setUp2();
-		// TODO Completar la prueba
-	}
-
-	@Test
-	public void testEliminar() {
-		setUp2();
-		// TODO Completar la prueba
-		
-	}
-
+	
 }
