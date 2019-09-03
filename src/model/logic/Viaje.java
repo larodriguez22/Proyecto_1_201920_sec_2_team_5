@@ -10,7 +10,7 @@ public class Viaje
 	private double geometric_mean_travel_time;
 	private double geometric_standard_deviation_travel_time;
 	
-	Viaje(String _sourceid, String _dstid, String _month, String _mean_travel_time, String _standard_deviation_travel_time, String _geometric_mean_travel_time, String _geometric_standard_deviation_travel_time)
+	public Viaje(String _sourceid, String _dstid, String _month, String _mean_travel_time, String _standard_deviation_travel_time, String _geometric_mean_travel_time, String _geometric_standard_deviation_travel_time)
 	{
 		setSourceid(Double.parseDouble(_sourceid));
 		setDstid(Double.parseDouble(_dstid));
