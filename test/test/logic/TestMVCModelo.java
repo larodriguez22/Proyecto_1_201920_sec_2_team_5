@@ -9,11 +9,10 @@ import org.junit.Test;
 public class TestMVCModelo {
 	
 	private MVCModelo modelo;
-	private static int CAPACIDAD=100;
 	
 	@Before
 	public void setUp1() {
-		modelo= new MVCModelo(CAPACIDAD);
+		modelo= new MVCModelo();
 	}
 
 	public void setUp2() {
