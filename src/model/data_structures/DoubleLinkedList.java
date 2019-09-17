@@ -36,9 +36,9 @@ public class DoubleLinkedList<T> implements IDoubleLinkedList<T>
 		ultimo = null;
 	}
 
-	public void agregar( T o )
+	public void agregar( Comparable lista )
 	{
-		Node<T> act= new Node<T>(o);
+		Node<T> act= new Node<T>(lista);
 		if( primero == null )
 		{
 			primero = act;
@@ -163,6 +163,4 @@ public class DoubleLinkedList<T> implements IDoubleLinkedList<T>
 	{			
 		return new ArregloDinamicoIterator();
 	}
-
-
-	}
+}

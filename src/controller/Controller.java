@@ -48,43 +48,56 @@ public class Controller
 			case 1:
 				view.printMessage("--------- \n Cargando Viajes ");
 				modelo = new MVCModelo();
+				view.printMessage("--------- \n Seleccione 0 si quiere cargar los datos para el primer trimestre del ano, y 1 si quiere cargar los datos para el segundo trimestre del ano: ");
+				int trimestre=lector.nextInt();
+
+				view.printMessage("--------- \n Escriba mes si quiere cargar la informacion por mes, escriba dia si quiere cargar la informacion por dia, y escriba hora si quiere cargar la informacion por hora: ");
+				String info=lector.nextLine();
 				try
 				{
-				modelo.crearLista(0);
-				modelo.crearLista(1);
+					modelo.crearLista(trimestre, info);
 				}
 				catch(Exception e)
 				{
-					//
+					view.printMessage(e.getMessage());
 				}
-				view.printMessage("Lista creada");
-				view.printMessage("Viajes mes 1: " + modelo.darViajesMes(1)+ "\n---------");
-				view.printMessage("Viajes mes 2: " + modelo.darViajesMes(2)+ "\n---------");
-				view.printMessage("Viajes mes 3: " + modelo.darViajesMes(3)+ "\n---------");
-				view.printMessage("Viajes mes 4 :" + modelo.darViajesMes(4)+ "\n---------");
-				view.printMessage("Viajes mes 5: " + modelo.darViajesMes(5)+ "\n---------");
-				view.printMessage("Viajes mes 6: " + modelo.darViajesMes(6)+ "\n---------");
+				view.printMessage("Archivos cargados");
+				view.printMessage("El total de viajes por" + info+ "para el trimestre "+ trimestre+ "es: "+modelo.darTamano(trimestre, info)+"\n---------");
+				view.printMessage("La zona con menor identificador " + modelo.menorZona(info, trimestre)+ "\n---------");
+				view.printMessage("La zona con menor identificador " + modelo.mayorZona(info, trimestre)+ "\n---------");
 				break;
 
 			case 2:
-				view.printMessage("--------- \n Seleccione la zona: ");
-				int zona = lector.nextInt();
+				view.printMessage("--------- \n Seleccione la zona de origen: ");
+				int zonaOrigen = lector.nextInt();
+				view.printMessage("--------- \n Seleccione la zona de destino: ");
+				int zonaDestino = lector.nextInt();
 				System.out.println("--------- \n Seleccione el mes: ");
-				int mes= lector.nextInt()-1;
-				DoubleLinkedList<Viaje> viajes = modelo.nuevosServicios(mes, zona);
-				for(Viaje i:viajes)
+				int info2= lector.nextInt();
+				try
 				{
-					view.printMessage("Zona Origen:"+i.getSourceid()+"; Zona destino:"+ i.getDstid() +"; tiempo promedio:" + i.getMean_travel_time() +"; Desviación estandar:" + i.getGeometric_standard_deviation_travel_time());
+					DoubleLinkedList<Viaje> viajes = modelo.darViajesZonaOZonaD(info, info2, zonaOrigen, zonaDestino);
+					for(int h=0; h<viajes.size(); h++)
+					{
+						Viaje i=viajes.get(h);
+						view.printMessage("Viaje"+h+": Tiempo promedio:" + i.getMean_travel_time() +"; Desviación estandar:" + i.getStandard_deviation_travel_time());
+					}
 				}
-
-
-				view.printMessage("Fin de los viajes con zona y mes especificados");
+				catch(Exception e)
+				{
+					view.printMessage(e.getMessage());
+				}
 				break;
 
 			case 3:
-				view.printMessage("--------- \\n Seleccione el trimestre:");
-				int trimestre0 = lector.nextInt();
-				view.printMessage("El numero total de viajes es:" + modelo.darTamano(trimestre0));
+				view.printMessage("--------- \\n Seleccione el numero de viajes que quiere consultar:");
+				int N = lector.nextInt();
+				DoubleLinkedList<Viaje> vs= modelo.consultarNViajes(info, info2, N);
+				for(int o=0; o<vs.size(); o++)
+				{
+					Viaje t=vs.get(o);
+					view.printMessage("Viaje"+o+"Zona Origen: "+t.getSourceid()+" Zona Destino: "+t.getDstid()+" Tiempo promedio:" + t.getMean_travel_time() +"; Desviación estandar:" + t.getStandard_deviation_travel_time());
+				}
 				break;
 
 			case 4:

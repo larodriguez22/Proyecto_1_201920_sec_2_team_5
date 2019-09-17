@@ -10,7 +10,7 @@ public interface IDoubleLinkedList <T> extends  Iterable <T>
 	 * Caso Especial: Si el arreglo esta lleno debe aumentarse su capacidad, agregar el nuevo dato y deben quedar multiples casillas disponibles para futuros nuevos datos.
 	 * @param dato nuevo elemento
 	 */
-	public void agregar( T dato );
+	public void agregar( Comparable dato );
 	public void remove (int pos);
 	public T get (int pos);
 	public boolean isEmpty();

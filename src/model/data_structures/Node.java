@@ -36,12 +36,12 @@ public class Node <T> implements Serializable{
     /**
      * Constructor del nodo con el elemento especificado. <br>
      * <b>post: </b> Se construy� el nodo con el elemento especificado, sigNodo= null, antNodo= null, elemento= pElemento.
-     * @param pElemento Elemento del nodo
+     * @param lista Elemento del nodo
      * @param pLista Lista Encadenada a la cual pertenece el nodo
      */
-    public Node( T pElemento )
+    public Node( Comparable lista )
     {
-        elemento = pElemento;
+        elemento = (T) lista;
         sigNode = null;
         antNode = null;
     }
