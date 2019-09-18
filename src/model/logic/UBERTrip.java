@@ -1,20 +1,21 @@
 package model.logic;
 
-public class Viaje implements Comparable<Viaje>
+public class UBERTrip implements Comparable<UBERTrip>
 {
+	
 	private double sourceid;
 	private double dstid;
-	private double info;
+	private double hod;
 	private double mean_travel_time;
 	private double standard_deviation_travel_time;
 	private double geometric_mean_travel_time;
 	private double geometric_standard_deviation_travel_time;
 	
-	public Viaje(String _sourceid, String _dstid, String _info, String _mean_travel_time, String _standard_deviation_travel_time, String _geometric_mean_travel_time, String _geometric_standard_deviation_travel_time)
+	public UBERTrip(String _sourceid, String _dstid, String _hod, String _mean_travel_time, String _standard_deviation_travel_time, String _geometric_mean_travel_time, String _geometric_standard_deviation_travel_time)
 	{
 		setSourceid(Double.parseDouble(_sourceid));
 		setDstid(Double.parseDouble(_dstid));
-		setInfo(Double.parseDouble(_info));
+		setHod(Double.parseDouble(_hod));
 		setMean_travel_time(Double.parseDouble(_mean_travel_time));
 		setStandard_deviation_travel_time(Double.parseDouble(_standard_deviation_travel_time));
 		setGeometric_mean_travel_time(Double.parseDouble(_geometric_mean_travel_time));
@@ -37,12 +38,12 @@ public class Viaje implements Comparable<Viaje>
 		this.dstid = dstid;
 	}
 
-	public double getInfo() {
-		return info;
+	public double getHod() {
+		return hod;
 	}
 
-	public void setInfo(double month) {
-		this.info = month;
+	public void setHod(double hod) {
+		this.hod = hod;
 	}
 
 	public double getMean_travel_time() {
@@ -78,7 +79,7 @@ public class Viaje implements Comparable<Viaje>
 	}
 	
 	@Override
-	public int compareTo(Viaje that) {
+	public int compareTo(UBERTrip that) {
 		// TODO Auto-generated method stub
 		if(this.mean_travel_time>that.mean_travel_time)
 		{
