@@ -92,6 +92,15 @@ public class Controller {
 				
 				modelo.compararZonas(zonaDada, zonaMayor, zonaMenor,info3);
 				
+			case 5:
+				
+				view.printMessage("--------- \n Generar una gráfica ASCII que muestre el tiempo promedio de los viajes entre una zona origen y una zona destino para cada hora del día");
+				view.printMessage("--------- \n Seleccione la zona de destino");
+				int zonaD=lector.nextInt();
+				view.printMessage("--------- \n Seleccione la zona de origen");
+				int zonaO=lector.nextInt();
+				
+				modelo.tresC(zonaD, zonaO);
 				
 			default: 
 				System.out.println("--------- \n Opcion Invalida !! \n---------");

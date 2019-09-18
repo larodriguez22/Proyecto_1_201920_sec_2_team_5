@@ -35,6 +35,8 @@ public class MVCModelo {
 	private double mayor;
 
 	private double menor;
+	
+	private int lTrimestre;
 
 	/**
 	 * Constructor del modelo del mundo con capacidad predefinida
@@ -45,6 +47,16 @@ public class MVCModelo {
 		mayor=0;
 		menor=999999999;
 		CantidadDatos=0;
+	}
+	
+	public int darTrimestre()
+	{
+		return lTrimestre;
+	}
+	
+	public void cambiarTrimestre(int n)
+	{
+		lTrimestre=n;
 	}
 	/**
 	 * Cambia el mayor por el numero de entrada
@@ -87,6 +99,7 @@ public class MVCModelo {
 
 	public void crearLista(int trimestre) throws Exception
 	{
+		cambiarTrimestre(trimestre);
 		viajes.insertarCabeza(agregarporMeses(trimestre));
 		viajes.insertarCola(agregarporDias(trimestre));
 		viajes.insertarCola(agregarporHora(trimestre));
@@ -262,6 +275,38 @@ public class MVCModelo {
 				double dif1=lista.dar(i).getSourceid()-zonaDada;
 				double dif2=zonaDada-lista.dar(i).getSourceid();
 				view.printMessage("el tiempo promedio es:"+dif1+"de"+ zonaDada +" a "+lista.dar(i).getSourceid()+"vs el tiempo promedio es "+dif2+ " de" +lista.dar(i).getSourceid()+ "a"+zonaDada);
+			}
+		}
+	}
+	public void tresC(int destino, int origen )
+	{
+		int cantidadminutos=0;
+		String asteriscos="";
+		boolean hay=false;
+		view.printMessage("Aproximación en minutos de viajes entre zona origen y zona destino. ");
+		view.printMessage("Trimestre "+darTrimestre()+"del 2018 detallado por cada hora del día");
+		view.printMessage("Zona Origen: "+origen+" Zona Destino: "+destino);
+		view.printMessage("Hora|  # de minutos");
+		for (int i=0;i<viajes.dar(HORA).darLongitud();i++)
+		{
+			if(viajes.dar(HORA).dar(i).getDstid()==destino)
+			{
+				if(viajes.dar(HORA).dar(i).getSourceid()==destino)
+				{
+					cantidadminutos=(int) (viajes.dar(HORA).dar(i).getMean_travel_time()/60);
+					hay=true;
+				}
+			}
+			for(int j=0;j<cantidadminutos;j++)
+			{
+			asteriscos=asteriscos+"*";
+			}
+			if(hay==true)
+			{
+			view.printMessage(viajes.dar(HORA).dar(i).getHod()+"|"+asteriscos);
+			}
+			else{
+			view.printMessage(viajes.dar(HORA).dar(i).getHod()+"| Hora sin viajes");	
 			}
 		}
 	}
